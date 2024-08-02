@@ -1,72 +1,91 @@
+// Import necessary Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getDatabase ref push onValue} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
-const appSettings={
+// Firebase configuration object containing the database URL
+const appSettings = {
     databaseURL: "https://realtime-database-bbc4f-default-rtdb.europe-west1.firebasedatabase.app/"
 }
 
-const app = initializeApp(appSettings)
-const database = getDatabase(app)
-const shoppingListInDB = ref(database, "shoppingList")
+// Initialize Firebase app with the given settings
+const app = initializeApp(appSettings);
 
-const inputFieldEl = document.getElementById("input-field")
-const addButtonEl = document.getElementById("add-button")
-const shoppingListEl = document.getElementById("shopping-list")
+// Get a reference to the Firebase Realtime Database
+const database = getDatabase(app);
 
+// Create a reference to the "shoppingList" node in the database
+const shoppingListInDB = ref(database, "shoppingList");
+
+// Get references to the HTML elements
+const inputFieldEl = document.getElementById("input-field");
+const addButtonEl = document.getElementById("add-button");
+const shoppingListEl = document.getElementById("shopping-list");
+
+// Add event listener to the "Add to cart" button
 addButtonEl.addEventListener("click", function() {
-    let inputValue = inputFieldEl.value
+    // Get the value from the input field
+    let inputValue = inputFieldEl.value;
     
-    push(shoppingListInDB, inputValue)
+    // Push the input value to the database under "shoppingList"
+    push(shoppingListInDB, inputValue);
     
-    clearInputFieldEl()
-})
+    // Clear the input field after adding the item
+    clearInputFieldEl();
+});
 
+// Listen for changes in the "shoppingList" node in the database
 onValue(shoppingListInDB, function(snapshot) {
     if (snapshot.exists()) {
-        let itemsArray = Object.entries(snapshot.val())
+        // Get the items as an array of [key, value] pairs
+        let itemsArray = Object.entries(snapshot.val());
     
-        clearShoppingListEl()
+        // Clear the current shopping list
+        clearShoppingListEl();
         
+        // Iterate through each item and append it to the shopping list
         for (let i = 0; i < itemsArray.length; i++) {
-            let currentItem = itemsArray[i]
-            let currentItemID = currentItem[0]
-            let currentItemValue = currentItem[1]
+            let currentItem = itemsArray[i];
+            let currentItemID = currentItem[0];
+            let currentItemValue = currentItem[1];
             
-            appendItemToShoppingListEl(currentItem)
+            appendItemToShoppingListEl(currentItem);
         }    
     } else {
-        shoppingListEl.innerHTML = "No items here... yet"
+        // If no items exist, display a placeholder message
+        shoppingListEl.innerHTML = "No items here... yet";
     }
-})
+});
 
+// Function to clear the shopping list element
 function clearShoppingListEl() {
-    shoppingListEl.innerHTML = ""
+    shoppingListEl.innerHTML = "";
 }
 
+// Function to clear the input field element
 function clearInputFieldEl() {
-    inputFieldEl.value = ""
+    inputFieldEl.value = "";
 }
 
+// Function to append an item to the shopping list element
 function appendItemToShoppingListEl(item) {
-    let itemID = item[0]
-    let itemValue = item[1]
+    let itemID = item[0];
+    let itemValue = item[1];
     
-    let newEl = document.createElement("li")
+    // Create a new list item element
+    let newEl = document.createElement("li");
     
-    newEl.textContent = itemValue
+    // Set the text content of the list item to the item value
+    newEl.textContent = itemValue;
     
+    // Add event listener to the list item for removal on click
     newEl.addEventListener("click", function() {
-        let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`)
+        // Get the exact location of the item in the database
+        let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
         
-        remove(exactLocationOfItemInDB)
-    })
+        // Remove the item from the database
+        remove(exactLocationOfItemInDB);
+    });
     
-    shoppingListEl.append(newEl)
+    // Append the new list item to the shopping list element
+    shoppingListEl.append(newEl);
 }
-    
-
-
-
-
-
-

@@ -1,71 +1,80 @@
+/* Set the margin and padding to zero for the entire HTML document and body */
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Rubik', sans-serif;
-    background-color: #EEF0F4;
-    color: #432000;
-    user-select: none;
+    font-family: 'Rubik', sans-serif; /* Use the 'Rubik' font */
+    background-color: #EEF0F4; /* Set the background color */
+    color: #432000; /* Set the text color */
+    user-select: none; /* Disable text selection */
 }
 
+/* Style for the main container */
 .container {
-    display: flex;
-    flex-direction: column;
-    max-width: 320px;
-    margin: 30px auto;
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Arrange items in a column */
+    max-width: 320px; /* Set a maximum width for the container */
+    margin: 30px auto; /* Center the container with margin */
 }
 
+/* Style for the image */
 img {
-    width: 150px;
-    margin: 0 auto;
+    width: 150px; /* Set the width of the image */
+    margin: 0 auto; /* Center the image horizontally */
 }
 
+/* Style for the input field */
 input {
-    color: #432000;
-    background-color: #DCE1EB;
-    border: 0;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Rubik', sans-serif;
-    margin: 10px 0;
+    color: #432000; /* Set the text color */
+    background-color: #DCE1EB; /* Set the background color */
+    border: 0; /* Remove the border */
+    padding: 15px; /* Add padding inside the input field */
+    border-radius: 8px; /* Round the corners of the input field */
+    font-size: 20px; /* Set the font size */
+    text-align: center; /* Center the text */
+    font-family: 'Rubik', sans-serif; /* Use the 'Rubik' font */
+    margin: 10px 0; /* Add vertical margin */
 }
 
+/* Style for the button */
 button {
-    color: #FDFDFD;
-    background-color: #AC485A;
-    border: 0;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Rubik', sans-serif;
+    color: #FDFDFD; /* Set the text color */
+    background-color: #AC485A; /* Set the background color */
+    border: 0; /* Remove the border */
+    padding: 15px; /* Add padding inside the button */
+    border-radius: 8px; /* Round the corners of the button */
+    font-size: 20px; /* Set the font size */
+    text-align: center; /* Center the text */
+    font-family: 'Rubik', sans-serif; /* Use the 'Rubik' font */
 }
 
+/* Style for the button on hover */
 button:hover {
-    background-color: #432000;
-    cursor: pointer;
+    background-color: #432000; /* Change the background color on hover */
+    cursor: pointer; /* Change the cursor to pointer on hover */
 }
 
+/* Style for the unordered list */
 ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    display: flex; /* Use flexbox layout */
+    flex-wrap: wrap; /* Allow the items to wrap to the next line */
+    gap: 10px; /* Add gap between list items */
 }
 
+/* Style for the list items */
 ul li {
-    font-size: 20px;
-    background-color: #FFFDF8;
-    padding: 15px;
-    border-radius: 8px;
-    flex-grow: 1;
-    text-align: center;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2)
+    font-size: 20px; /* Set the font size */
+    background-color: #FFFDF8; /* Set the background color */
+    padding: 15px; /* Add padding inside the list item */
+    border-radius: 8px; /* Round the corners of the list item */
+    flex-grow: 1; /* Allow the list item to grow */
+    text-align: center; /* Center the text */
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the list item */
 }
 
+/* Style for the list items on hover */
 ul li:hover {
-    background-color: #FFECC7;
-    cursor: pointer;
+    background-color: #FFECC7; /* Change the background color on hover */
+    cursor: pointer; /* Change the cursor to pointer on hover */
 }
