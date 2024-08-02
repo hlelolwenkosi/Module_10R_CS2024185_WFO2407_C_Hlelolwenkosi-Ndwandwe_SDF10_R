@@ -1,12 +1,16 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"
-import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js"
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getDatabase,
+        ref } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
 
 const firebaseConfig = {
     databaseURL: process.env.DATABASE_URL
 }
 
-const app = initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig);
 const database = getDatabase(app)
+const referenceInDB = ref(database, "leads")
 
 
 
@@ -18,3 +22,4 @@ addButtonEl.addEventListener("click", function() {
     
     console.log(inputValue)
 })
+
